@@ -2,4 +2,8 @@ this is just a test
 
 one, two three
 
+<<<<<<< HEAD
 Line by Carlos
+=======
+This is Meike's Test 
+>>>>>>> 82bb34186d008722c6f00ac4917804b00aab1961
