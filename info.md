@@ -10,6 +10,8 @@
 
 A way to [format text files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
+Visual Studio Code Hack: https://stackoverflow.com/a/66850056/573216
+
 This is an image:
 
 ![logo](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
@@ -17,4 +19,5 @@ This is an image:
 
 ## Libraries
 
-- [p5.js](https://p5js.org/)
+- [p5.js](https://p5js.org/)#
+- [markdeep](https://casual-effects.com/markdeep/)
