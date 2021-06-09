@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>P5JS Template</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1" />
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script></script>
+
+    <style></style>
+</head>
+
+<body>
+    <div id="p5sketch1">
+        <!-- p5 instance will be created here -->
+    </div>
+    <script>
+        const s1 = function (p5) {
+
+            p5.setup = function () {
+                p5.createCanvas(400, 400);
+            };
+
+            // p5.keyPressed = function () {
+            //   if (p5.keyCode == p5.LEFT_ARROW) ship.deg -= 0.05;
+            // }
+
+            p5.draw = function () {
+                p5.background(p5.color(100,100,100));
+
+            };
+        };
+
+        let myp5_1 = new p5(s1, document.getElementById("p5sketch1"));
+    </script>
+</body>
+
+
+
+</html>
