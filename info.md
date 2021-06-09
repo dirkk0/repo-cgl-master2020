@@ -3,13 +3,15 @@
 ## Versioning System Services
 
 - [Github](https://github.com/)
-- Gitlab
-- Bitbucket
+- [Gitlab](https://gitlab.com/)
+- [Bitbucket](https://bitbucket.org/)
 
 ## Markdown
 
 A way to format text files.
 
-### another title
+This is an image:
 
-akjdasdasld aösdldöadk 
+![logo](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+
