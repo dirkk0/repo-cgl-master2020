@@ -8,7 +8,7 @@
 
 ## Markdown
 
-A way to format text files.
+A way to [format text files](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 This is an image:
 
