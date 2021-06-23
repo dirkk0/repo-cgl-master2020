@@ -10,7 +10,10 @@ function SpeechObj() {
 
     
     this.setUp = function () {
-        this.move = 1
+        this.move = true
+    }
+    this.setDown = function () {
+        this.move = false
     }
     
     // this.setStop = function () {
@@ -29,10 +32,7 @@ function SpeechObj() {
             this.direction = null
         }, 300);
     }
-    this.setUp = function () {
-        // this.direction = 3
-        this.move = true
-    }
+
     this.goLeft = function () {
         if (this.direction == 1) return true
     }
@@ -40,7 +40,12 @@ function SpeechObj() {
         if (this.direction == 2) return true
     }
     this.goUp = function () {
-        if (this.move == true) return true
+        // if (this.move == true) return true
+        return this.move
+    }
+    this.goDown = function () {
+        // if (this.move == true) return true
+        return !this.move
     }
 }
 

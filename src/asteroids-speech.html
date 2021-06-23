@@ -161,9 +161,11 @@
           if (speechObj.goUp()) {
             ship.vel += 0.05;
             ship.vector = ship.deg
-
           }
-
+          if (speechObj.goDown()) {
+            ship.vel = 0
+            ship.vector = ship.deg
+          }
 
           if (p5.keyIsDown(p5.LEFT_ARROW)) ship.deg += 0.05;
           if (p5.keyIsDown(p5.RIGHT_ARROW)) ship.deg -= 0.05;
@@ -299,6 +301,7 @@
         },
         'down': function () {
           console.log("ship going down")
+          speechObj.setDown()
         },
         'left': function () {
           console.log("ship going left")
