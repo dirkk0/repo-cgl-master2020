@@ -9,9 +9,9 @@ function SpeechObj() {
     }
 
     
-    // this.setStart = function () {
-    //     this.move = 1
-    // }
+    this.setUp = function () {
+        this.move = 1
+    }
     
     // this.setStop = function () {
     //     this.move = 0
@@ -37,7 +37,7 @@ function SpeechObj() {
         if (this.direction == 2) return true
     }
     this.goUp = function () {
-        if (this.direction == 3) return true
+        if (this.move == true) return true
     }
 }
 
