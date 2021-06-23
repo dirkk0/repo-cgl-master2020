@@ -1,3 +1,3 @@
 
 console.log("I am external file")
-let externalData = { "title": "the second title", "score": 36 }
+let externalData = { "title": "My fabulous game!", "score": 36 }
