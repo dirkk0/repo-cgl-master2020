@@ -8,10 +8,10 @@
   <meta name="viewport"
     content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1" />
 
-    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
 
-    <script src="external-file.js"></script>
-    <script></script>
+  <script src="external-file.js"></script>
+  <script></script>
 
   <style></style>
 </head>
@@ -35,12 +35,9 @@
 
     console.log(externalData)
 
-    setTimeout(() => {
-      const par = "title"
-      console.log("I changed the text!!")
-      document.getElementById("info").innerText = externalData[par]
-    }, 20);
-    
+
+    document.getElementById("info").innerText = externalData.title
+
 
     function randomSeedParkMiller(seed = 5) {
       // doesn't repeat b4 JS dies.
@@ -96,7 +93,7 @@
           bullets[i].x = ship.x
           bullets[i].y = ship.y;
           bullets[i].deg = PI * Math.random();
-          bullets[i].vel = V_BULLETS; 
+          bullets[i].vel = V_BULLETS;
           bullets[i].radius = 5;
           bullets[i].color = p5.color(0, 10, 0)
           // bullets[i].active = true;
@@ -182,10 +179,10 @@
                   bullets[j].y = ship.y
                   bullets[j].deg = ship.deg
                   setTimeout(() => {
-                    bullets[j].active = false                    
+                    bullets[j].active = false
                   }, BULLET_LIFETIME);
                   break
-                 }
+                }
 
               }
               isFiring = true
