@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TITLE</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1" />
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+
+    <script src="external-file.js"></script>
+    <script></script>
+
+  <style></style>
+</head>
+
+<body>
+  <div id="info">
+    This is my beautiful first example!
+  </div>
+  <!-- <input type="checkbox" id="stop" name="horns" onchange="isRunning = !isRunning"> -->
+  <div id="p5sketch1">
+    <!-- p5 instance will be created here -->
+    <!--
+      - const NUM_SHIPS, SIZE
+      - ship x y half size and only in reset
+      - get rid of myCircle
+      - rename Circle?
+      - add color to class
+    -->
+  </div>
+  <script>
+
+    console.log(externalData)
+
+    setTimeout(() => {
+      const par = "title"
+      console.log("I changed the text!!")
+      document.getElementById("info").innerText = externalData[par]
+    }, 20);
+    
+
+    function randomSeedParkMiller(seed = 5) {
+      // doesn't repeat b4 JS dies.
+      // https://gist.github.com/blixt/f17b47c62508be59987b
+      seed = seed % 2147483647;
+      return () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+      };
+    }
+
+    Math.random = randomSeedParkMiller();
+
+
+    const s1 = function (p5) {
+      // let myCircle;
+      let asteroids;
+      let bullets;
+      let backgroundColor;
+
+      let ship;
+
+      let isRunning = true;
+
+      const NUM_ASTEROIDS = 10
+      const NUM_BULLETS = 10
+
+      const V_BULLETS = 1
+      const BULLET_LIFETIME = 250
+
+      const PI = 3.14
+
+      isFiring = false
+
+      function reset() {
+        // Math.random = randomSeedParkMiller(22);
+        ship.radius = 20
+        ship.x = (p5.width - ship.radius) / 2;
+        ship.y = (p5.height - ship.radius) / 2;
+        ship.deg = 0;
+        ship.vel = 0;
+        ship.vector = 0;
+        for (let i = 0; i < NUM_ASTEROIDS; i++) {
+          asteroids[i].x = Math.random() * p5.width;
+          asteroids[i].y = Math.random() * p5.height;
+          asteroids[i].vel = 2 * Math.random() - 1;
+          asteroids[i].deg = PI * Math.random();
+          asteroids[i].radius = 25 * Math.random() + 5;
+          asteroids[i].color = p5.color(0, 255, 0)
+          asteroids[i].active = true
+        }
+        for (let i = 0; i < NUM_BULLETS; i++) {
+          bullets[i].x = ship.x
+          bullets[i].y = ship.y;
+          bullets[i].deg = PI * Math.random();
+          bullets[i].vel = V_BULLETS; 
+          bullets[i].radius = 5;
+          bullets[i].color = p5.color(0, 10, 0)
+          // bullets[i].active = true;
+          // setTimeout(() => {
+          //   bullets[i].active = false
+          // }, 1000);
+        }
+      }
+
+      p5.setup = function () {
+        p5.createCanvas(400, 400);
+
+        ship = new Circle();
+
+        asteroids = []
+        bullets = []
+        for (let i = 0; i < NUM_ASTEROIDS; i++) {
+          asteroids.push(new Circle());
+        }
+        for (let i = 0; i < NUM_BULLETS; i++) {
+          bullets.push(new Circle());
+        }
+        reset()
+        backgroundColor = p5.color(200);
+
+        ship.draw = function () {
+          p5.push()
+          p5.strokeWeight(1);
+          p5.stroke(p5.color(255, 0, 0));
+          p5.fill(p5.color(255, 0, 0));
+          // p5.ellipse(this.x, this.y, this.radius, this.radius);
+          p5.translate(this.x, this.y)
+          p5.rotate(-this.deg)
+          p5.rect(-this.radius / 2 + 5, -this.radius / 2, this.radius - 5, this.radius);
+          p5.pop()
+        };
+
+        ship.move = function () {
+          this.inc_x = this.vel * Math.sin(this.vector)
+          this.inc_y = this.vel * Math.cos(this.vector)
+          this.x += this.inc_x;
+          this.y += this.inc_y;
+
+          if (this.x > p5.width) this.x = 0;
+          if (this.y > p5.height) this.y = 0;
+          if (this.x < 0) this.x = p5.width;
+          if (this.y < 0) this.y = p5.height;
+          this.vel *= 0.99
+          if (this.vel > 1) this.vel = 1
+        };
+      };
+
+      // p5.keyPressed = function () {
+      //   if (p5.keyCode == p5.LEFT_ARROW) ship.deg -= 0.05;
+      //   if (p5.keyCode == p5.RIGHT_ARROW) ship.deg += 0.05;
+      //   // if (p5.keyCode == p5.TAB) reset()
+      // }
+
+      p5.draw = function () {
+        if (isRunning) {
+          p5.background(backgroundColor);
+          if (p5.keyIsDown(p5.TAB)) reset();
+
+          if (p5.keyIsDown(p5.LEFT_ARROW)) ship.deg += 0.05;
+          if (p5.keyIsDown(p5.RIGHT_ARROW)) ship.deg -= 0.05;
+          // if (ship.inc_x > 1) ship.inc_x = 1;
+          // if (ship.inc_x < -1) ship.inc_x = -1;
+          if (p5.keyIsDown(p5.DOWN_ARROW)) {
+            ship.vel -= 0.05;
+            ship.vector = ship.deg
+          }
+          if (p5.keyIsDown(p5.UP_ARROW)) {
+            ship.vel += 0.05;
+            ship.vector = ship.deg
+          }
+          if (p5.keyIsDown(32)) {
+            if (!isFiring) {
+              console.log(123)
+              for (let j = 0; j < bullets.length; j++) {
+                if (!bullets[j].active) {
+                  bullets[j].active = true
+                  bullets[j].x = ship.x
+                  bullets[j].y = ship.y
+                  bullets[j].deg = ship.deg
+                  setTimeout(() => {
+                    bullets[j].active = false                    
+                  }, BULLET_LIFETIME);
+                  break
+                 }
+
+              }
+              isFiring = true
+              setTimeout(() => {
+                isFiring = false
+              }, 150);
+            }
+          }
+
+          ship.move();
+          ship.draw();
+
+          for (let i = 0; i < asteroids.length; i++) {
+            if (asteroids[i].active) {
+              // if (isRunning) {
+              // let myAsteroid = asteroids[i];
+              asteroids[i].move();
+              asteroids[i].draw();
+
+
+              let dx = asteroids[i].x - (ship.x);
+              let dy = asteroids[i].y - (ship.y);
+              let distance = Math.sqrt(dx * dx + dy * dy);
+              if (distance < (asteroids[i].radius + ship.radius) / 2) {
+                console.log("ouchs", distance);
+                isRunning = false;
+                // debugger
+                setTimeout(function () {
+                  reset()
+                  isRunning = true;
+                }, 2000);
+              }
+              // }
+              for (let j = 0; j < bullets.length; j++) {
+                if (bullets[j].active) {
+                  bullets[j].move()
+                  bullets[j].draw()
+
+                  let dx = bullets[j].x - (asteroids[i].x);
+                  let dy = bullets[j].y - (asteroids[i].y);
+                  let distance = Math.sqrt(dx * dx + dy * dy);
+                  if (distance < (bullets[j].radius + asteroids[i].radius) / 2) {
+                    asteroids[i].active = false
+                    bullets[j].active = false
+                    console.log("hit", distance);
+                  }
+                }
+              }
+            }
+          }
+        } else {
+          p5.background(p5.color(255, 0, 0));
+          p5.textSize(32);
+          p5.fill(p5.color(0, 0, 0))
+          p5.noStroke()
+          p5.smooth()
+          // p5.stroke(p5.color(0, 0, 0))
+
+          p5.textAlign(p5.CENTER, p5.CENTER);
+          p5.text("NOOOOOO", p5.width / 2, p5.height / 2);
+        }
+      };
+
+      function Circle() {
+        this.color = p5.color(0, 0, 255)
+
+        this.move = function () {
+          this.inc_x = this.vel * Math.sin(this.deg)
+          this.inc_y = this.vel * Math.cos(this.deg)
+          this.x += this.inc_x;
+          this.y += this.inc_y;
+
+          if (this.x > p5.width) this.x = 0;
+          if (this.y > p5.height) this.y = 0;
+          if (this.x < 0) this.x = p5.width;
+          if (this.y < 0) this.y = p5.height;
+        };
+
+        this.draw = function () {
+          p5.strokeWeight(1);
+          p5.stroke(p5.color(255, 255, 255));
+          p5.fill(this.color);
+          // p5.rect(this.x, this.y, this.radius, this.radius);
+          p5.ellipse(this.x, this.y, this.radius, this.radius);
+        };
+      }
+    };
+
+    let myp5_1 = new p5(s1, document.getElementById("p5sketch1"));
+      // let myp5_2 = new p5(s2, document.getElementById('p5sketch2'))
+  </script>
+</body>
+
+
+
+</html>
