@@ -85,7 +85,7 @@
           bullets[i].x = ship.x
           bullets[i].y = ship.y;
           bullets[i].deg = PI * Math.random();
-          bullets[i].vel = V_BULLETS; 
+          bullets[i].vel = V_BULLETS;
           bullets[i].radius = 5;
           bullets[i].color = p5.color(0, 10, 0)
           // bullets[i].active = true;
@@ -171,10 +171,10 @@
                   bullets[j].y = ship.y
                   bullets[j].deg = ship.deg
                   setTimeout(() => {
-                    bullets[j].active = false                    
+                    bullets[j].active = false
                   }, BULLET_LIFETIME);
                   break
-                 }
+                }
 
               }
               isFiring = true
@@ -265,6 +265,51 @@
 
     let myp5_1 = new p5(s1, document.getElementById("p5sketch1"));
       // let myp5_2 = new p5(s2, document.getElementById('p5sketch2'))
+  </script>
+
+
+  <script>
+    if (annyang) {
+      // Let's define our first command. First the text we expect, and then the function it should call
+      let commands = {
+        'test': function () {
+          console.log("yay aspojsdpfjsdpfjspfjspfjpjji ")
+          // $('#tpsreport').animate({bottom: '-100px'});
+        },
+        'up': function () {
+          console.log("ship going up")
+        },
+        'down': function () {
+          console.log("ship going down")
+        },
+        'left': function () {
+          console.log("ship going left")
+        },
+        'right': function () {
+          console.log("ship going right")
+        },
+
+      };
+
+      // Add our commands to annyang
+      annyang.addCommands(commands);
+      annyang.setLanguage("en-US");
+
+      // Start listening. You can call this here, or attach this call to an event, button, etc.
+      annyang.start();
+
+      annyang.addCallback("resultMatch", function (
+        userSaid, commandText, phrases) {
+        console.log(userSaid)
+        console.log(commandText)
+        console.log(phrases)
+      })
+
+      annyang.addCallback("resulNoMatch", function (err) {
+        console.log(err)
+      })
+
+    }
   </script>
 </body>
 
