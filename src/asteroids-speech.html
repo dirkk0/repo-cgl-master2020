@@ -10,6 +10,8 @@
 
   <script src="//cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script src="speechobj.js"></script>
+  
 
   <script></script>
 
@@ -54,7 +56,7 @@
 
       let isRunning = true;
 
-      const NUM_ASTEROIDS = 10
+      const NUM_ASTEROIDS = 0
       const NUM_BULLETS = 10
 
       const V_BULLETS = 1
@@ -96,6 +98,11 @@
       }
 
       p5.setup = function () {
+
+        // let speechObj = new SpeechObj()
+
+        speechObj.init()
+
         p5.createCanvas(400, 400);
 
         ship = new Circle();
@@ -148,6 +155,15 @@
         if (isRunning) {
           p5.background(backgroundColor);
           if (p5.keyIsDown(p5.TAB)) reset();
+
+          if (speechObj.goLeft()) ship.deg += 0.05;
+          if (speechObj.goRight()) ship.deg -= 0.05;
+          if (speechObj.goUp()) {
+            ship.vel += 0.05;
+            ship.vector = ship.deg
+
+          }
+
 
           if (p5.keyIsDown(p5.LEFT_ARROW)) ship.deg += 0.05;
           if (p5.keyIsDown(p5.RIGHT_ARROW)) ship.deg -= 0.05;
@@ -269,6 +285,7 @@
 
 
   <script>
+
     if (annyang) {
       // Let's define our first command. First the text we expect, and then the function it should call
       let commands = {
@@ -278,15 +295,18 @@
         },
         'up': function () {
           console.log("ship going up")
+          speechObj.setUp()
         },
         'down': function () {
           console.log("ship going down")
         },
         'left': function () {
           console.log("ship going left")
+          speechObj.setLeft()
         },
         'right': function () {
           console.log("ship going right")
+          speechObj.setRight()
         },
 
       };
