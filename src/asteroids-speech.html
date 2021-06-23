@@ -156,14 +156,15 @@
           p5.background(backgroundColor);
           if (p5.keyIsDown(p5.TAB)) reset();
 
-          if (speechObj.goLeft()) ship.deg += 0.05;
-          if (speechObj.goRight()) ship.deg -= 0.05;
-          if (speechObj.goUp()) {
+          if (speechObj.isLeft()) ship.deg += 0.05;
+          if (speechObj.isRight()) ship.deg -= 0.05;
+          if (speechObj.isUp()) {
             ship.vel += 0.05;
             ship.vector = ship.deg
           }
-          if (speechObj.goDown()) {
-            ship.vel = 0
+          if (speechObj.isDown()) {
+            // ship.vel -= 0.05;
+            ship.vel = 0;
             ship.vector = ship.deg
           }
 
@@ -288,51 +289,7 @@
 
   <script>
 
-    if (annyang) {
-      // Let's define our first command. First the text we expect, and then the function it should call
-      let commands = {
-        'test': function () {
-          console.log("yay")
-          // $('#tpsreport').animate({bottom: '-100px'});
-        },
-        'up': function () {
-          console.log("ship going up")
-          speechObj.setUp()
-        },
-        'down': function () {
-          console.log("ship going down")
-          speechObj.setDown()
-        },
-        'left': function () {
-          console.log("ship going left")
-          speechObj.setLeft()
-        },
-        'right': function () {
-          console.log("ship going right")
-          speechObj.setRight()
-        },
 
-      };
-
-      // Add our commands to annyang
-      annyang.addCommands(commands);
-      annyang.setLanguage("en-US");
-
-      // Start listening. You can call this here, or attach this call to an event, button, etc.
-      annyang.start();
-
-      annyang.addCallback("resultMatch", function (
-        userSaid, commandText, phrases) {
-        // console.log(userSaid)
-        // console.log(commandText)
-        // console.log(phrases)
-      })
-
-      annyang.addCallback("resulNoMatch", function (err) {
-        console.log(err)
-      })
-
-    }
   </script>
 </body>
 

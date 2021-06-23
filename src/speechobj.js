@@ -7,7 +7,6 @@ function SpeechObj() {
     this.init = function () {
         console.log("annyang initialized!")
     }
-
     
     this.setUp = function () {
         this.move = true
@@ -16,10 +15,6 @@ function SpeechObj() {
         this.move = false
     }
     
-    // this.setStop = function () {
-    //     this.move = 0
-    // }
-
     this.setLeft = function () {
         this.direction = 1
         setTimeout(() => {
@@ -33,17 +28,17 @@ function SpeechObj() {
         }, 300);
     }
 
-    this.goLeft = function () {
+    this.isLeft = function () {
         if (this.direction == 1) return true
     }
-    this.goRight = function () {
+    this.isRight = function () {
         if (this.direction == 2) return true
     }
-    this.goUp = function () {
+    this.isUp = function () {
         // if (this.move == true) return true
         return this.move
     }
-    this.goDown = function () {
+    this.isDown = function () {
         // if (this.move == true) return true
         return !this.move
     }
