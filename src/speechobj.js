@@ -21,7 +21,7 @@ function SpeechObj() {
         this.direction = 1
         setTimeout(() => {
             this.direction = null
-        }, 100);
+        }, 300);
     }
     this.setRight = function () {
         this.direction = 2
