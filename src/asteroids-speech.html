@@ -273,7 +273,7 @@
       // Let's define our first command. First the text we expect, and then the function it should call
       let commands = {
         'test': function () {
-          console.log("yay aspojsdpfjsdpfjspfjspfjpjji ")
+          console.log("yay")
           // $('#tpsreport').animate({bottom: '-100px'});
         },
         'up': function () {
@@ -300,9 +300,9 @@
 
       annyang.addCallback("resultMatch", function (
         userSaid, commandText, phrases) {
-        console.log(userSaid)
-        console.log(commandText)
-        console.log(phrases)
+        // console.log(userSaid)
+        // console.log(commandText)
+        // console.log(phrases)
       })
 
       annyang.addCallback("resulNoMatch", function (err) {
