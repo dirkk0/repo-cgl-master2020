@@ -21,4 +21,8 @@ app.use('/', express.static(__dirname + '/../public'))
 
 let server = http.createServer(app)
 
-server.listen(9000)
+const PORT=9000
+
+server.listen(PORT)
+
+console.log("server running on port: "+PORT)
