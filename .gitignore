@@ -1,3 +1,4 @@
 temp/*
 # src/server-examples/server/node-modules
 node_modules/
+*/package-lock.json
