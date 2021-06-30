@@ -1,1 +1,3 @@
 temp/*
+# src/server-examples/server/node-modules
+node_modules/
