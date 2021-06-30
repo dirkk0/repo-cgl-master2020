@@ -11,17 +11,25 @@ let app = express()
 
 let database = ["han solo", "princess leia", "chewbacas"]
 
-app.get('/api/:id', function (req, res) {
-    // console.log(req.params)
-    // res.end(JSON.stringify(req.params.id))
-    res.end(database[req.params.id])
-})
+let infomessage = "abc"
+
 
 app.get('/api/:id', function (req, res) {
     // console.log(req.params)
     // res.end(JSON.stringify(req.params.id))
     res.end(database[req.params.id])
 })
+
+app.get('/setmsg/:txt', function (req, res) {
+    infomessage = req.params.txt
+    res.end("txt: " + infomessage)
+})
+
+app.get('/getmsg', function (req, res) {
+    res.end("display: " + infomessage)
+})
+
+
 
 app.use('/', express.static(__dirname + '/../public'))
 
