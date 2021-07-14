@@ -12,15 +12,17 @@
 
 <body>
     <h1>chat test</h1>
+    <div>tetst</div>
+    <div id="p5sketch1"></div>
     <ul id="messages"></ul>
     <input id="inputBox" autocomplete="off"><button onclick="sendMessage()">Send</button>
-
-    <div id="p5sketch1"></div>
 
     <script>
 
         var socket = io();
         let ul = document.getElementById("messages");
+
+        let users = [];
 
 
         socket.on('connect', (socket) => {
@@ -32,6 +34,21 @@
             ul.innerHTML += "<li>" + msg + "</li>"
         });
 
+        socket.on('pos', function (msg) {
+            console.log("POS message received", msg)
+            if (!users[msg.id]) users[msg.id] = {}
+
+            users[msg.id].x = msg.x
+            users[msg.id].y = msg.y
+
+        });
+
+        socket.on("exit", (id) => {
+            console.log("exit", id)
+            // users.splice(users.findIndex(elem => elem === id), 1);
+            delete users[id]
+            // console.log(users);
+        });
 
         // form.addEventListener('submit', function (e) {
         //     e.preventDefault();
@@ -61,17 +78,32 @@
                 // p5.ellipse(50, 50, 80, 80);
                 p5.background(p5.color(100, 100, 200));
                 p5.ellipse(player.x, player.y, 15, 15)
+                Object.keys(users).forEach(key => {
+                    const u = users[key]
+                    // console.log(u)
+                    if (u.x) p5.ellipse(u.x, u.y, 15, 15)
+                })
             };
 
             p5.mousePressed = function () {
+                console.log(123)
                 player.x = p5.mouseX
                 player.y = p5.mouseY
+                socket.emit('client_pos', player);
                 // prevent default
                 return false;
             }
         }
 
         let mySketch = new p5(sketch, document.getElementById("p5sketch1"));
+
+        setInterval(() => {
+            socket.emit('client_pos', player);
+        }, 1000);
+
+        // setInterval(() => {
+        //     info.innerText = JSON.stringify({ ...users })
+        // }, 100);
 
     </script>
 </body>

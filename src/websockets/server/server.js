@@ -36,6 +36,17 @@ io.on('connection', (socket) => {
         io.emit('chat', msg);
 
     });
+    socket.on('client_pos', (msg) => {
+        // console.log('position: ' + JSON.stringify(msg));
+        console.log(msg)
+        msg.id = socket.id
+        io.emit('pos', msg);
+
+    });
+    socket.on('disconnect', (c) => {
+        console.log(socket.id)
+        io.emit('exit', socket.id);
+    });
 })
 
 
