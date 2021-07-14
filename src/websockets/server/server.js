@@ -24,5 +24,16 @@ const io = socketio(server);
 
 io.on('connection', (socket) => {
     console.log("connection established")
+
+    setTimeout(() => {
+        io.emit('chat', 123);
+    }, 1000);
+
+
+    socket.on('client_chat', (msg) => {
+        // console.log('position: ' + JSON.stringify(msg));
+        console.log(msg)
+    });
 })
+
 

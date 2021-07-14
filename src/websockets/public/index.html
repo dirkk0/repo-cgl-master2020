@@ -11,9 +11,7 @@
 <body>
     <h1>chat test</h1>
     <ul id="messages"></ul>
-    <form id="form" action="">
-        <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
+    <input id="inputBox" autocomplete="off" ><button onclick="sendMessage()">Send</button>
     <script>
 
         var socket = io();
@@ -22,6 +20,28 @@
         socket.on('connect', (socket) => {
             console.log('yay!');
         });
+
+        socket.on('chat', function (msg) {
+            console.log("CHAT message received", msg)
+        });
+
+
+        // form.addEventListener('submit', function (e) {
+        //     e.preventDefault();
+        //     if (input.value) {
+        //         socket.emit('chat', input.value);
+        //         input.value = '';
+        //     }
+        // });
+
+        function sendMessage() {
+            let i = document.getElementById("inputBox")
+            if (i.value) {
+                console.log(i.value)
+                socket.emit('client_chat', i.value);
+                i.value = '';
+            }
+        }
 
     </script>
 </body>
