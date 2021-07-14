@@ -5,6 +5,8 @@
     <title>Socket.IO chat</title>
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+
 
 </head>
 
@@ -12,6 +14,9 @@
     <h1>chat test</h1>
     <ul id="messages"></ul>
     <input id="inputBox" autocomplete="off"><button onclick="sendMessage()">Send</button>
+
+    <div id="p5sketch1"></div>
+
     <script>
 
         var socket = io();
@@ -44,6 +49,21 @@
                 i.value = '';
             }
         }
+
+
+        // let me = { x: 0, y: 0 }
+
+        function sketch(p5) {
+            p5.setup = function () {
+                p5.createCanvas(200, 200);
+            };
+            p5.draw = function () {
+                // p5.ellipse(50, 50, 80, 80);
+                p5.background(p5.color(100,100,200));
+            };
+        }
+
+        let mySketch = new p5(sketch, document.getElementById("p5sketch1"));
 
     </script>
 </body>
