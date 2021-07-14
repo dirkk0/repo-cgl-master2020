@@ -6,8 +6,6 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
-
-
 </head>
 
 <body>
@@ -16,13 +14,16 @@
     <div id="p5sketch1"></div>
     <ul id="messages"></ul>
     <input id="inputBox" autocomplete="off"><button onclick="sendMessage()">Send</button>
+    <div>
+        <code id="info"></code>
+    </div>
 
     <script>
-
         var socket = io();
         let ul = document.getElementById("messages");
 
         let users = [];
+        let player = { x: 50, y: 100 }
 
 
         socket.on('connect', (socket) => {
@@ -45,18 +46,9 @@
 
         socket.on("exit", (id) => {
             console.log("exit", id)
-            // users.splice(users.findIndex(elem => elem === id), 1);
             delete users[id]
-            // console.log(users);
         });
 
-        // form.addEventListener('submit', function (e) {
-        //     e.preventDefault();
-        //     if (input.value) {
-        //         socket.emit('chat', input.value);
-        //         input.value = '';
-        //     }
-        // });
 
         function sendMessage() {
             let i = document.getElementById("inputBox")
@@ -66,9 +58,6 @@
                 i.value = '';
             }
         }
-
-
-        let player = { x: 50, y: 100 }
 
         function sketch(p5) {
             p5.setup = function () {
@@ -101,9 +90,9 @@
             socket.emit('client_pos', player);
         }, 1000);
 
-        // setInterval(() => {
-        //     info.innerText = JSON.stringify({ ...users })
-        // }, 100);
+        setInterval(() => {
+            info.innerText = JSON.stringify({ ...users }, 2, 2)
+        }, 100);
 
     </script>
 </body>
