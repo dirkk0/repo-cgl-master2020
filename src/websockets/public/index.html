@@ -1,11 +1,10 @@
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Socket.IO chat</title>
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <script src="/socket.io/socket.io.js"></script>
 
 </head>
 
@@ -15,4 +14,14 @@
     <form id="form" action="">
         <input id="input" autocomplete="off" /><button>Send</button>
     </form>
+    <script>
+
+        var socket = io();
+
+
+        socket.on('connect', (socket) => {
+            console.log('yay!');
+        });
+
+    </script>
 </body>
