@@ -11,10 +11,11 @@
 <body>
     <h1>chat test</h1>
     <ul id="messages"></ul>
-    <input id="inputBox" autocomplete="off" ><button onclick="sendMessage()">Send</button>
+    <input id="inputBox" autocomplete="off"><button onclick="sendMessage()">Send</button>
     <script>
 
         var socket = io();
+        let ul = document.getElementById("messages");
 
 
         socket.on('connect', (socket) => {
@@ -23,6 +24,7 @@
 
         socket.on('chat', function (msg) {
             console.log("CHAT message received", msg)
+            ul.innerHTML += "<li>" + msg + "</li>"
         });
 
 
