@@ -51,7 +51,7 @@
         }
 
 
-        // let me = { x: 0, y: 0 }
+        let player = { x: 50, y: 100 }
 
         function sketch(p5) {
             p5.setup = function () {
@@ -59,8 +59,16 @@
             };
             p5.draw = function () {
                 // p5.ellipse(50, 50, 80, 80);
-                p5.background(p5.color(100,100,200));
+                p5.background(p5.color(100, 100, 200));
+                p5.ellipse(player.x, player.y, 15, 15)
             };
+
+            p5.mousePressed = function () {
+                player.x = p5.mouseX
+                player.y = p5.mouseY
+                // prevent default
+                return false;
+            }
         }
 
         let mySketch = new p5(sketch, document.getElementById("p5sketch1"));
