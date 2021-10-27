@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <h2>People</h2>
+    <h2>Rooms</h2>
     <div id="myDiv">another text</div>
 
     <script>
@@ -25,8 +25,8 @@
       let myOtherData = { people: myData };
 
       let rooms = [
-        { kitchen: ["stove", "dishwasher"] },
-        { livingroom: ["tv-set", "pc", "couch"] },
+        { name: "kitchen", things: ["stove", "dishwasher"] },
+        { name: "livingroom", things: ["tv-set", "pc", "couch"] },
       ];
 
       let myDiv = document.getElementById("myDiv");
@@ -44,11 +44,12 @@
       // temp = rooms.kitchen.things[1]
 
       rooms.forEach((el1) => {
-        console.log(el1, el1.kitchen.length);
+        console.log(el1, el1.name);
+        temp += "<h3>" + el1.name + "</h3>";
 
-        for (let i = 0; i < el1.length; i++) {
-          const el2 = el1[i];
-          console.log(el2)
+        for (let i = 0; i < el1.things.length; i++) {
+          const el2 = el1.things[i];
+          console.log(el2);
           temp += "<div>" + el2 + "</div>";
         }
       });
