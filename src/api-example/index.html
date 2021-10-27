@@ -1,28 +1,60 @@
-
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>TITLE</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 
-<head>
-  <title>TITLE</title>
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1"
+    />
 
-  <meta name="viewport"
-    content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script> -->
+    <script></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
-  <script></script>
+    <style></style>
+  </head>
 
-  <style></style>
-</head>
+  <body>
+    <h2>People</h2>
+    <div id="myDiv">another text</div>
 
-<body>
+    <script>
+      let myData = ["lea", "abdullah", "jorge", "dirk"];
 
-  <script>
+      let myOtherData = { people: myData };
 
+      let rooms = [
+        { kitchen: ["stove", "dishwasher"] },
+        { livingroom: ["tv-set", "pc", "couch"] },
+      ];
 
-  </script>
-</body>
+      let myDiv = document.getElementById("myDiv");
+      // setTimeout(() => {
+      //   myDiv.innerText = "something else";
+      // }, 1500);
 
+      let temp = "";
 
+      myData.forEach((el) => {
+        temp += "<div>" + el + "</div>";
+      });
 
+      temp = "";
+      // temp = rooms.kitchen.things[1]
+
+      rooms.forEach((el1) => {
+        console.log(el1, el1.kitchen.length);
+
+        for (let i = 0; i < el1.length; i++) {
+          const el2 = el1[i];
+          console.log(el2)
+          temp += "<div>" + el2 + "</div>";
+        }
+      });
+      console.log(temp);
+
+      myDiv.innerHTML = temp;
+    </script>
+  </body>
 </html>
