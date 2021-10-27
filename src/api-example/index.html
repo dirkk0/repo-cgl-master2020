@@ -28,44 +28,52 @@
       let rooms;
 
       async function getIt() {
-        await fetch("data.json").then(function (r) {
-          r.text().then(function (d) {
-            // console.log(d);
-            return rooms;
-          });
-        });
+        await fetch("data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            res = data;
+            // console.log(res)
+            doIt(res);
+          })
+          .catch(console.error);
+
+        // return res
       }
 
-      rooms = getIt()
-      console.log(rooms)
+      getIt()
 
-      let myDiv = document.getElementById("myDiv");
-      // setTimeout(() => {
-      //   myDiv.innerText = "something else";
-      // }, 1500);
+      function doIt(rooms) {
+        // rooms = getIt();
+        console.log(rooms);
 
-      let temp = "";
+        let myDiv = document.getElementById("myDiv");
+        // setTimeout(() => {
+        //   myDiv.innerText = "something else";
+        // }, 1500);
 
-      myData.forEach((el) => {
-        temp += "<div>" + el + "</div>";
-      });
+        let temp = "";
 
-      temp = "";
-      // temp = rooms.kitchen.things[1]
+        myData.forEach((el) => {
+          temp += "<div>" + el + "</div>";
+        });
 
-      rooms.forEach((el1) => {
-        console.log(el1, el1.name);
-        temp += "<h3>" + el1.name + "</h3>";
+        temp = "";
+        // temp = rooms.kitchen.things[1]
 
-        for (let i = 0; i < el1.things.length; i++) {
-          const el2 = el1.things[i];
-          console.log(el2);
-          temp += "<div>" + el2 + "</div>";
-        }
-      });
-      console.log(temp);
+        rooms.forEach((el1) => {
+          console.log(el1, el1.name);
+          temp += "<h3>" + el1.name + "</h3>";
 
-      myDiv.innerHTML = temp;
+          for (let i = 0; i < el1.things.length; i++) {
+            const el2 = el1.things[i];
+            console.log(el2);
+            temp += "<div>" + el2 + "</div>";
+          }
+        });
+        console.log(temp);
+
+        myDiv.innerHTML = temp;
+      }
     </script>
   </body>
 </html>
