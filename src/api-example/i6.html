@@ -11,7 +11,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
     <script></script>
-    <!-- <script src="data.js"></script> -->
 
     <style>
       body {
@@ -26,83 +25,48 @@
 
     <div id="container"></div>
 
+    <!-- <script src="game.js"></script> -->
     <script>
-      let sketch = function (p5) {
-        window.gameObjects = [
-          { name: "a", x: 10, y: 40 },
-          { name: "b", x: 30, y: 70 },
-          { name: "c", x: 50, y: 120 },
-        ];
-        console.log(gameObjects)
+      window.gameObjects = [ { "name": "d", "x": 10, "y": 140 }];
+      startGame();
 
-        // let firstObject = new Things();
-        // firstObject.radius = 30;
+      setInterval(() => {
+        let url = "game.json?"+ new Date()
+        // console.log(url)
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            res = data;
+            window.gameObjects = res;
+            // console.log(gameObjects);
+            // startGame();
+          })
+          .catch(console.error);
+      }, 500);
 
-        // firstObject.init(gameObjects[0].x, gameObjects[0].y, 40);
+      function startGame() {
+        let sketch = function (p5) {
+          // console.log("Am I called???");
+          p5.setup = function () {
+            cnv = p5.createCanvas(400, 400);
+            p5.background(255, 255, 0);
+          };
 
-        // let allGameObjects = [];
+          p5.draw = function () {
+            p5.background(210, 210, 210);
+            p5.text(p5.frameCount, 110, 30);
+            // p5.background(p5.random(255), p5.random(255), p5.random(255));
 
-        // for (let i = 0; i < gameObjects.length; i++) {
-        //   // const element = array[i];
-        //   allGameObjects[i] = new Things();
-        //   allGameObjects[i].init(i);
-        // }
-
-        // function Things() {
-        //   // default values
-        //   this.radius = 20;
-        //   // this.x = 50;
-        //   // this.y = 50;
-
-        //   this.init = function (i) {
-        //     this.i = i
-        //     // this.radius = r;
-        //     // this.x = y;
-        //     // this.y = y;
-        //     // console.log(`I was create at ${x} ${y}`);
-        //   };
-
-        //   this.draw = function () {
-        //     p5.ellipse(
-        //       gameObjects[this.i].x,
-        //       gameObjects[this.i].y,
-        //       this.radius,
-        //       this.radius
-        //     );
-        //     // p5.ellipse(this.x, this.y, this.radius, this.radius);
-        //   };
-        // }
-
-        p5.setup = function () {
-          // p5.noCanvas();
-          cnv = p5.createCanvas(400, 400);
-          // draw things at init
-          p5.background(255, 255, 0);
+            for (let i = 0; i < gameObjects.length; i++) {
+              let g = gameObjects[i];
+              p5.text(g.name, g.x, g.y -30);
+              p5.ellipse(g.x, g.y, 20, 20);
+            }
+          };
         };
 
-        p5.draw = function () {
-          // draw animations
-          // p5.background(p5.random(255), p5.random(255), p5.random(255));
-          p5.background(210, 210, 210);
-          // for (let i = 0; i < 100; i++) {
-          //   let rad = p5.random(5, 25);
-          //   p5.fill(p5.random(255), 0, 255);
-          //   p5.noStroke();
-          //   p5.ellipse(p5.random(p5.width), p5.random(p5.height), rad, rad);
-          // }
-
-          for (let i = 0; i < gameObjects.length; i++) {
-            let g = gameObjects[i]
-            p5.ellipse(g.x, g.y, 20, 20);
-            
-          }
-          // gameObjects.forEach((el) => {
-          //   el.draw();
-          // });
-        };
-      };
-
-      new p5(sketch, document.querySelector("#container")); // bind the canvas to a div in the body
+        new p5(sketch, document.querySelector("#container")); // bind the canvas to a div in the body
+      }
     </script>
   </body>
 </html>
