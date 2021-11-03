@@ -33,36 +33,44 @@
           { name: "b", x: 30, y: 70 },
           { name: "c", x: 50, y: 120 },
         ];
+        console.log(gameObjects)
+        window.abc = gameObjects
 
         let firstObject = new Things();
         // firstObject.radius = 30;
 
         // firstObject.init(gameObjects[0].x, gameObjects[0].y, 40);
 
-        let allGameObjects = []
+        let allGameObjects = [];
 
         for (let i = 0; i < gameObjects.length; i++) {
           // const element = array[i];
-          allGameObjects[i] = new Things()
-          allGameObjects[i].init(gameObjects[i].x, gameObjects[i].y, 40)
-          
+          allGameObjects[i] = new Things();
+          allGameObjects[i].init(i);
         }
 
         function Things() {
           // default values
           this.radius = 20;
-          this.x = 50;
-          this.y = 50;
+          // this.x = 50;
+          // this.y = 50;
 
-          this.init = function (x, y, r) {
-            this.radius = r;
-            this.x = y;
-            this.y = y;
-            console.log(`I was create at ${x} ${y}`)
+          this.init = function (i) {
+            this.i = i
+            // this.radius = r;
+            // this.x = y;
+            // this.y = y;
+            // console.log(`I was create at ${x} ${y}`);
           };
 
           this.draw = function () {
-            p5.ellipse(this.x, this.y, this.radius, this.radius);
+            p5.ellipse(
+              gameObjects[this.i].x,
+              gameObjects[this.i].y,
+              this.radius,
+              this.radius
+            );
+            // p5.ellipse(this.x, this.y, this.radius, this.radius);
           };
         }
 
@@ -83,14 +91,13 @@
           //   p5.noStroke();
           //   p5.ellipse(p5.random(p5.width), p5.random(p5.height), rad, rad);
           // }
-          allGameObjects.forEach(el => {
-            el.draw()
+          allGameObjects.forEach((el) => {
+            el.draw();
           });
           // firstObject.draw();
         };
       };
 
-      
       new p5(sketch, document.querySelector("#container")); // bind the canvas to a div in the body
     </script>
   </body>
