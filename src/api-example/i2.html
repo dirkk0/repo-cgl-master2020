@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TITLE</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script></script>
+    <!-- <script src="data.js"></script> -->
+
+    <style>
+
+      body {
+        width: 80%;
+        margin: auto;
+      }
+
+      #container {
+        /* width: 300px;
+        height: 300px; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>test</h2>
+
+    <div id="container"></div>
+
+    <script>
+
+      let obj = ["a", "b", "c"]
+      console.log(obj)
+
+      let str = JSON.stringify(obj)
+      console.log(str)
+
+      let temp = 23;
+
+      str = `["c","d",${temp}]`
+      console.log(str)
+
+      let obj2 = JSON.parse(str)
+
+      console.log(obj2)
+
+
+
+      let sketch = function (p) {
+        p.setup = function () {
+          // p.noCanvas();
+          cnv = p.createCanvas(400, 400);
+          // draw things at init
+          p.background(255, 255, 0);
+          // imageData = cnv.elt.toDataURL(); // dump texture as base64
+        };
+
+        p.draw = function () {
+          // draw animations
+          // p.background(p.random(255), p.random(255), p.random(255));
+          p.background(210, 210, 210);
+          // for (let i = 0; i < 100; i++) {
+          //   let rad = p.random(5, 25);
+          //   p.fill(p.random(255), 0, 255);
+          //   p.noStroke();
+          //   p.ellipse(p.random(p.width), p.random(p.height), rad, rad);
+          // }
+        };
+      };
+      new p5(sketch, document.querySelector("#container")); // bind the canvas to a div in the body
+    </script>
+  </body>
+</html>

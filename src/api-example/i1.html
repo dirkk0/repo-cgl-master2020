@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TITLE</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1"
+    />
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script> -->
+    <script></script>
+    <!-- <script src="data.js"></script> -->
+
+    <style>
+
+      body {
+        width: 80%;
+        margin: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>test</h2>
+    <div id="myDiv"></div>
+
+    <script>
+
+      let obj = ["a", "b", "c"]
+      console.log(obj)
+
+      let str = JSON.stringify(obj)
+      console.log(str)
+
+      let temp = 23;
+
+      str = `["c","d",${temp}]`
+      console.log(str)
+
+      let obj2 = JSON.parse(str)
+
+      console.log(obj2)
+
+    </script>
+  </body>
+</html>
