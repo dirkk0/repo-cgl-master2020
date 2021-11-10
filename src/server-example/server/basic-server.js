@@ -9,25 +9,35 @@ let app = express()
 //     console.log(req.url)
 // })
 
-let database = ["han solo", "princess leia", "chewbacas"]
+let database = ["han solo", "princess leia", "chewbaca"]
+
+// app.get('/api/:id', function (req, res) {
+//     // console.log(req.params)
+//     // res.end(JSON.stringify(req.params.id))
+//     res.end(database[req.params.id])
+// })
 
 app.get('/api/:id', function (req, res) {
-    // console.log(req.params)
+    console.log(req.params)
     // res.end(JSON.stringify(req.params.id))
-    res.end(database[req.params.id])
+    let i = parseInt(req.params.id)
+    let result = database[i]
+    console.log(result)
+    res.end(result)
 })
 
-app.get('/api/:id', function (req, res) {
-    // console.log(req.params)
-    // res.end(JSON.stringify(req.params.id))
-    res.end(database[req.params.id])
-})
+// app.get('/api/:id/test/:id2', function (req, res) {
+//     console.log(req.params)
+//     let a = +parseInt(req.params.id2) + parseInt(req.params.id)
+//     res.end(JSON.stringify(a))
+//     // res.end(database[req.params.id])
+// })
 
-app.use('/', express.static(__dirname + '/../public'))
+app.use('/', express.static(__dirname + '/../public'))  // static webserver
 
 let server = http.createServer(app)
 
-const PORT=5000
+const PORT=5001
 
 server.listen(PORT)
 
