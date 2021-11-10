@@ -8,7 +8,8 @@ four, five, six
 
 ## server
 
-to start the server, you need to install the express middleware first liek so:
+to start the server, you need to install the express middleware first like so:
+
 `npm install express`
 
 
