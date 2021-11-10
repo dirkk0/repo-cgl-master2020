@@ -35,3 +35,6 @@ material/0 = SubResource( 6 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.539579, 0.595338, -0.595338, 0, 0.707107, 0.707107, 0.841935, -0.38154, 0.38154, -4.4358, 4.03552, 0 )
 shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.933693, 0.0809511, -0.348804, 0, 0.97411, 0.226073, 0.358075, -0.211083, 0.90952, -0.856111, 3.3145, 4.27684 )
