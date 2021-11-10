@@ -6,6 +6,11 @@ This is another change ....
 
 four, five, six
 
+## server
+
+to start the server, you need to install the express middleware first liek so:
+`npm install express`
+
 
 ## Links
 
