@@ -28,7 +28,7 @@ material/0 = null
 environment = SubResource( 4 )
 
 [node name="cube" type="MeshInstance" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00397158, 1.66224, -2.82966 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00397158, 1.66224, 0.30915 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
