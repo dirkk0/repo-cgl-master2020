@@ -23,7 +23,7 @@ app.get('/api/:id', function (req, res) {
     let i = parseInt(req.params.id)
     let result = database[i]
     console.log(result)
-    res.end(result)
+    res.end(result)  // sending!!
 })
 
 // app.get('/api/:id/test/:id2', function (req, res) {
@@ -39,7 +39,7 @@ let server = http.createServer(app)
 
 const PORT=5001
 
-server.listen(PORT)
+server.listen(PORT)  // endless loop
 
 // console.log("server running on port: "+PORT)
 console.log(`server running on port: ${PORT}`)
