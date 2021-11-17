@@ -28,6 +28,18 @@ func _physics_process(delta):
 		direction -= aim.x
 	if Input.is_action_pressed("ui_d"):
 		direction += aim.x
+	if Input.is_action_just_pressed("ui_e"):
+		print("eeeeee")
+		var r = $Head/Camera/RayCast
+		var hit_object = r.get_collider()
+		print(r.get_collision_point(), r.is_colliding())
+		if hit_object:
+			# var p = b.get_parent().get_parent()
+			var owner = hit_object.get_owner()
+			print(owner.name)
+			if owner.has_method("activate"):
+				owner.activate()
+
 
 	direction = direction.normalized()
 	velocity = velocity.linear_interpolate(direction * speed, acceleration * delta)

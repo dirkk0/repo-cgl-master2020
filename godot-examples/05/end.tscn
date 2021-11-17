@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="end" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 260.0
+margin_top = 158.0
+margin_right = 653.0
+margin_bottom = 298.0
+text = "thanks for playing!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
