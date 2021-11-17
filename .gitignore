@@ -4,3 +4,5 @@ node_modules/
 package-lock.json
 
 godot-examples/fps/logs/*
+godot-examples/01/logs/*
+godot-examples/crate/logs/*
